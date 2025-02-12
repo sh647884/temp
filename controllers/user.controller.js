@@ -1,16 +1,12 @@
-/*const userModel = require('../models/user.model');
+const UserModel = require('../models/user.model');
 
-exports.createUser = (req, res) => {
-    userModel.create(req.body)
-        .then(result => res.status(201).send({ id: result._id }))
-        .catch(err => res.status(400).send(err));
-};
-
-exports.createUserAsync = async (req, res) => {
+exports.createUser = async (req, res) => {
     try {
-        let user = await userModel.create(req.body);
-        res.status(201).send({ id: user._id });
+        console.log(req.body); // pour debug : affiche les données reçues
+        const user = await UserModel.create(req.body);
+        res.status(201).json({ id: user._id });
     } catch (err) {
-        res.status(400).send(err);
+        console.error(err); // log les erreurs dans la console
+        res.status(400).json(err);
     }
-};*/
+};
